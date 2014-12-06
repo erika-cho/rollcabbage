@@ -9,13 +9,29 @@
 <script src="./assets/js/countdown.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+<<<<<<< HEAD
 <script src="./assets/js/rollcabbage.js"></script>
 
+=======
+<script src="./assets/js/show.js"></script>
+<script src="./assets/js/countdown.js"></script>
+>>>>>>> 63a65d62765f1dd47c6a3ab2effb4754334bd45f
 </head>
 <body>
 
 <script>
+<<<<<<< HEAD
 $(function(){
+=======
+  $(document).on("pageinit", function(){
+    var params = getUrlVars()
+    viewStationList(params.id);
+  });
+</script>
+
+<script>
+
+>>>>>>> 63a65d62765f1dd47c6a3ab2effb4754334bd45f
 var stations;
 var station1 = {
     line:'大江戸線',
@@ -71,6 +87,7 @@ var stations = toStations(nowIam,nearStations);
 
 });
 
+    
 function toStations(nowIam,stations){
     var result = []
     var now = new Date();
@@ -161,7 +178,6 @@ function cal_distance(lat1, lon1, lat2, lon2){
 
     return Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
 }
-
 </script>
 
 
@@ -176,10 +192,15 @@ function cal_distance(lat1, lon1, lat2, lon2){
   <div role="main" class="ui-content">
     <ul id="stations" data-role="listview">
       <li id="listHeader"><div class="station">周辺の駅</div><div class="timelimit2">終電まで</div><div class="distance">距離</div></li>
-     
+       
+      <li><div class="station">大江戸線 赤羽橋駅</div><div class="timelimit">2:34</div><div class="distance">徒歩5分</div></li>
+      <li><div class="station">日比谷線 神谷町駅</div><div class="timelimit">2:10</div><div class="distance">徒歩7分</div></li>
+      <li><div class="station">三田線	御成門駅</div><div class="timelimit">1:50</div><div class="distance">徒歩6分</div></li>
+      <li><div class="station">浅草線	大門駅</div><div class="timelimit">1:54</div><div class="distance">徒歩10分</div></li>
+      <li><div class="station">JR 浜松町駅</div><div class="timelimit">2:21</div><div class="distance">徒歩15分</div></li>
     </ul>
   </div>
-
+    
   <div data-role="footer">
     <h3>ぐるなびいい肉ハッカソン チームD</h3>
   </div>
@@ -187,9 +208,9 @@ function cal_distance(lat1, lon1, lat2, lon2){
   <div id="choice">
     <div class="inner">
       <ul>
-        <li>お店を探す</li>
-        <li>タクシーを呼ぶ</li>
-        <li>宿泊施設を探す</li>
+        <li><a href="after.html#sec1">お店を探す</a></li>
+        <li><a href="after.html#sec2">タクシーを呼ぶ</a></li>
+        <li><a href="after.html#sec3">宿泊施設を探す</a></li>
       </ul>
     </div>
   </div>
