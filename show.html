@@ -56,10 +56,22 @@ var nowIam = {
     longitude:'139.7448359'
 }
 
-var stations = [station1,station2,station3,station4,station5];
+var nearStations = [station1,station2,station3,station4,station5];
+var stations = toStations(nowIam,nearStations);
 
-console.log(toStations(nowIam,stations));
+setInterval(1000,function(){
     
+});
+
+stations.forEach(function(station){
+    var stationState = countDown(station);
+    if(stationState){
+        //ここで通常アニメーション
+    }else{
+        //ここで消すアニメーション
+    }
+});    
+
 function toStations(nowIam,stations){
     var result = []
     var now = new Date();
@@ -110,11 +122,13 @@ function initCount(now,lastTrain){
 }
 
     
-function countDown(stations){
-    stations.map(function(station,index){
-        station.count -= 1;
+function countDown(station){
+    station.count -= 1000;
+    if(station.count > 0){
         return station;
-    });
+    }else{
+        return false;
+    }
 }
 
 function cal_distance(lat1, lon1, lat2, lon2){
