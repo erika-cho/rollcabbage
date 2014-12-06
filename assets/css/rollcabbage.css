@@ -113,11 +113,11 @@ a:hover{
 /*------------------------------------------------------------
 	ヘッダー
 ------------------------------------------------------------*/
-header{
+#after header{
 	width:100%;
 	overflow:hidden;}
 
-h1	{
+#after h1	{
 	background:#000000;
 	color:#cccccc;
 	font-weight:normal;
@@ -130,7 +130,7 @@ h1	{
 }
 
 /*	タイトル	*/
-hgroup h2{
+#after hgroup h2{
 	background:url(../images/header_bg.gif) repeat-x;
 	ackground-image:-moz-linear-gradient(top, #434641, #292b27);
 	background-image:-webkit-gradient(linear, center top, center bottom, from(#434641), to(#292b27));
@@ -168,11 +168,11 @@ p#h_image span{
 }
 
 /*	ヘッダー画像下 文字	*/
-header h2{
+#after header h2{
 	padding:10px;
 }
 
-header p{
+#after header p{
 	padding:0 10px;
 }
 
@@ -181,7 +181,7 @@ header p{
 /*------------------------------------------------------------
 	コンテンツ
 ------------------------------------------------------------*/
-article{
+#after article{
 	width:100%;
 	overflow:hidden;
 }
@@ -189,7 +189,7 @@ article{
 /*---------------------
 	コンテンツタイトル
 --------------------*/
-article .title h2{
+#after article .title h2{
 	background-image: -moz-linear-gradient(top, #cf494a, #7c1c1c);
 	background-image: -webkit-gradient(linear, center top, center bottom, from(#cf494a), to(#7c1c1c));
 	background-image: -o-linear-gradient(top, #cf494a, #7c1c1c);
@@ -212,13 +212,13 @@ article .title h2{
 /*---------------------
 	コンテンツボディ
 --------------------*/
-article section{
+#after article section{
 	padding:4% 5px 4% 10px;
 	margin-left:5px;
 	margin-right:5px;
 }
 
-article section:nth-child(even){
+#after article section:nth-child(even){
 	background-image: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
 	background-image: -webkit-gradient(linear, center top, center bottom, from(#f8f8f8), to(#f2f2f2));
 	background-image: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
@@ -227,7 +227,7 @@ article section:nth-child(even){
 	border-color:#FFF #999 #aaa;
 }
 
-article section:nth-child(odd){
+#after article section:nth-child(odd){
 	background-image: -moz-linear-gradient(top, #ececec, #d9d9d9);
 	background-image: -webkit-gradient(linear, center top, center bottom, from(#ececec), to(#d9d9d9));
 	background-image: -o-linear-gradient(top, #ececec, #d9d9d9);
@@ -236,7 +236,7 @@ article section:nth-child(odd){
 	border-color:#FFF #999 #aaa;
 }
 
-article section a{
+#after article section a{
 	background:url(../images/link_icon.png) no-repeat right center;
 	padding-right:5%;
 	display:block;
@@ -245,7 +245,7 @@ article section a{
 
 
 /*	コンテンツ画像　*/
-article section a figure{
+#after article section a figure{
 	width:35%;
 	margin-right:10px;
 
@@ -256,29 +256,29 @@ article section a figure{
 
 	float:left;}
 
-article section a figure img{
+#after article section a figure img{
 	width:100%;
 }
 
 
 /*	コンテンツ画像の説明文字　*/
-article section a h2{
+#after article section a h2{
 	width:60%;
 	color:#76252C;
 	float:left;
 }
 
-article section a p{
+#after article section a p{
 	width:90%;
 	float:right;
 }
 
 /*	トップに戻る　*/
-p.go_top{
+#after p.go_top{
 	margin-top:5%;
 	text-align:right;}
 
-p.go_top a{
+#after p.go_top a{
 	margin-right:5px;
 	padding-right:15px;
 	display:block;
@@ -288,31 +288,31 @@ p.go_top a{
 /*------------------------------------------------------------
 	フッター
 ------------------------------------------------------------*/
-.free_space{
+#after .free_space{
 	margin-top:5%;
 	padding:3% 10px;
 	border:dotted #E5CFD7;
 	border-width:1px 0;
 }
 
-.free_space img{
+#after .free_space img{
 	margin:auto;
 	display:block;
 	border:solid 1px #363133;
 }
 
-footer ul{
+#after footer ul{
 	padding:4% 0;
 	overflow:hidden;
 }
 
-footer ul li{
+#after footer ul li{
 	width:20%;
 	margin:2% 2.5% 2% 2.5%;
 	float:left;
 }
 
-footer ul li a{
+#after footer ul li a{
 	padding:1.4em 0;
 	display:block;
 	color:#E5CFD7;
@@ -334,12 +334,12 @@ footer ul li a{
 	background-clip: padding-box;
 }
 
-address{
+#after address{
 	padding:3% 0;
 	border-top:dotted 1px #363133;
 }
 
-address p{
+#after address p{
 	font-size:0.714em;
 	text-align:center;}
 
