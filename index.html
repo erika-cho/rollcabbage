@@ -9,6 +9,7 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
 <script src="./assets/js/rollcabbage.js"></script>
+<script src="./assets/js/countdown.js"></script>
 </head>
 <body>
 
@@ -59,12 +60,12 @@ var nowIam = {
 var stations = [station1,station2,station3,station4,station5];
 
 console.log(toStations(nowIam,stations));
-    
+
 function toStations(nowIam,stations){
     var result = []
     var now = new Date();
     stations.forEach(function(station){
-    
+
         /*var place = new google.maps.LatLng(Number(station.latitude), Number(station.longitude));
         var distance = google.maps.geometry.spherical.computeDistanceBetween(nowIam, place);*/
         var geoDistance = cal_distance(Number(nowIam.latitude),Number(nowIam.longitude), Number(station.latitude),Number(nowIam.longitude));
@@ -81,16 +82,16 @@ function toStations(nowIam,stations){
 function initCount(now,lastTrain){
     var n_hours = now.getHours();
     var n_minutes = now.getMinutes();
-    
+
     var train = lastTrain.split(":");
     var t_hours = Number(train[0]);
     var t_minutes = Number(train[1]);
-    
+
     var lt;
-    
+
   	console.log(n_hours);
     console.log(t_hours);
-  
+
     if(n_hours > 12 && t_hours > 12){
         //終電のdateオブジェクトを今日の日付でつくる
         lt = new Date();
@@ -107,10 +108,10 @@ function initCount(now,lastTrain){
         lt.setHours = t_hours;
         lt.setMinutes = t_minutes;
     }
-    
+
   	console.log(now);
   	console.log(lt);
-  
+
     if(lt-now > 0){
         return lt-now;
     }else{
@@ -118,7 +119,7 @@ function initCount(now,lastTrain){
     }
 }
 
-    
+
 function countDown(stations){
     stations.map(function(station,index){
         station.count -= 1;
@@ -140,11 +141,11 @@ function cal_distance(lat1, lon1, lat2, lon2){
 
     //子午線曲率半径
     //半径を6335439m、離心率を0.006694で設定してます
-    var meridian = 6335439 / Math.sqrt(Math.pow(1 - 0.006694 * Math.sin(latave) * Math.sin(latave), 3));    
+    var meridian = 6335439 / Math.sqrt(Math.pow(1 - 0.006694 * Math.sin(latave) * Math.sin(latave), 3));
 
     //卯酉線曲率半径
     //半径を6378137m、離心率を0.006694で設定してます
-    var primevertical = 6378137 / Math.sqrt(1 - 0.006694 * Math.sin(latave) * Math.sin(latave));     
+    var primevertical = 6378137 / Math.sqrt(1 - 0.006694 * Math.sin(latave) * Math.sin(latave));
 
     //Hubenyの簡易式
     var x = meridian * latidiff;
@@ -152,7 +153,7 @@ function cal_distance(lat1, lon1, lat2, lon2){
 
     return Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
 }
-    
+
 </script>
 
 <script>
@@ -220,7 +221,7 @@ $(function(){
   <div role="main" class="ui-content">
     <ul data-role="listview">
       <li id="listHeader"><div class="station">周辺の駅</div><div class="timelimit2">終電まで</div><div class="distance">距離</div></li>
-      <li><div class="station">大江戸線 赤羽橋駅</div><div class="timelimit"></div><div class="distance">徒歩5分</div></li>
+      <li><div class="station">大江戸線 赤羽橋駅</div><div id="CDT" class="timelimit"></div><div class="distance">徒歩5分</div></li>
       <li><div class="station">日比谷線 神谷町駅</div><div class="timelimit"></div><div class="distance">徒歩7分</div></li>
       <li><div class="station">三田線	御成門駅</div><div class="timelimit"></div><div class="distance">徒歩6分</div></li>
       <li><div class="station">浅草線	大門駅</div><div class="timelimit"></div><div class="distance">徒歩10分</div></li>
