@@ -64,9 +64,6 @@ function toStations(nowIam,stations){
     var result = []
     var now = new Date();
     stations.forEach(function(station){
-    
-        /*var place = new google.maps.LatLng(Number(station.latitude), Number(station.longitude));
-        var distance = google.maps.geometry.spherical.computeDistanceBetween(nowIam, place);*/
         var geoDistance = cal_distance(Number(nowIam.latitude),Number(nowIam.longitude), Number(station.latitude),Number(nowIam.longitude));
         station.distance = geoDistance/80;
         var limitCount = initCount(now,station.lastTrain);
@@ -88,9 +85,6 @@ function initCount(now,lastTrain){
     
     var lt;
     
-  	console.log(n_hours);
-    console.log(t_hours);
-  
     if(n_hours > 12 && t_hours > 12){
         //終電のdateオブジェクトを今日の日付でつくる
         lt = new Date();
@@ -107,9 +101,6 @@ function initCount(now,lastTrain){
         lt.setHours = t_hours;
         lt.setMinutes = t_minutes;
     }
-    
-  	console.log(now);
-  	console.log(lt);
   
     if(lt-now > 0){
         return lt-now;
@@ -155,60 +146,7 @@ function cal_distance(lat1, lon1, lat2, lon2){
     
 </script>
 
-<script>
-$(function(){
-    var stations;
-    var station1 = {
-        line:'大江戸線',
-        name:'赤羽橋',
-        latitude: '35.655007',
-        longitude: '139.743642',
-        lastTrain: '01:08'
-    };
-    var station2 = {
-        line:'日比谷線',
-        name:'神谷町',
-        latitude: '35.662978',
-        longitude: '139.745069',
-        lastTrain: '01:12'
-    };
-    var station3 = {
-        line:'三田線',
-        name:'御成門',
-        latitude: '35.661215',
-        longitude: '139.751535',
-        lastTrain: '00:08'
-    };
-    var station4 = {
-        line:'浅草線',
-        name:'大門',
-        latitude: '35.656785',
-        longitude: '139.75466',
-        lastTrain: '00:47'
-    };
-    var station5 = {
-        line:'JR',
-        name:'浜松町',
-        latitude: '35.655646',
-        longitude: '139.756749',
-        lastTrain: '01:12'
-    };
 
-    var nowIam = {
-        latitude:'35.6578124',
-        lognitude:'139.7448359'
-    };
-    stations = [station1,station2,station3,station4,station5];
-    stations.forEach(function(station){
-        var latDist = Math.abs(nowIam.latitude - station.latitude);
-        var logDist = Math.abs(nowIam.lognitude - station.lognitude);
-        var result = Math.sqrt(logDist*logDist + latDist*latDist);
-        console.log(result);
-    });
-
-});
-
-</script>
 <!--ページ領域-->
 <div data-role="page" data-title="ロールキャベツ">
 
