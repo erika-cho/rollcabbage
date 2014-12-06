@@ -10,8 +10,15 @@ function computeDuration(ms){
 }
 
 CountdownTimer.prototype = {
-  initialize:function(elm, tl, mes) {
-    this.elem = document.getElementById(elm);
+  initialize:function(elem, tl, mes) {
+      
+    this.elem = $("#" +elem);
+    $("#stations").html(this.elem);
+    
+     
+      
+      
+      
     this.tl = tl;
     this.mes = mes;
    },
@@ -26,25 +33,30 @@ CountdownTimer.prototype = {
     if ((this.tl - today) > 0) {
       if (hour) timer += '<span class="hour">'+hour+':</span>';
       timer += '<span class="min">'+this.addZero(min)+':</span><span class="sec">'+this.addZero(sec)+'</span>';
-      this.elem.innerHTML = timer;
+      console.log(this);
+      this.elem.(timer);
       tid = setTimeout(function(){me.countDown();},10);
     } else {
-      this.elem.innerHTML = this.mes;
+      //this.elem.innerHTML = this.mes;
+      $(this.elem).fadeOut(1000,function(){
+            $(this.elem).remove;
+            if( $(".station").length === 0 ){
+                $("#choice").show();
+            }
+      });
+      
       return;
     }
   },
   addZero:function(num) {return ('0'+num).slice(-2);}
 }
 
-function CDT(){
+function CDT(stationElm,timelimit){
   var today = new Date();
-  var timelimit = new Date(today.getDate());
-  var timer = new CountdownTimer('CDT', timelimit, 'TIME UP');
+  //var timelimit = new Date(today.getDate());
+  var timer = new CountdownTimer(stationElm, timelimit, 'TIME UP');
   timer.countDown();
-  console.log(today);
 }
 
-window.onload = function() {
-  CDT();
-}
+window.CDT = CDT;
 
