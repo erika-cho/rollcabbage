@@ -19,12 +19,16 @@ function getRestaurantList(pos) {
     longitude: pos.coords.longitude,
     range: 3,
   };
-  $.getJSON('http://api.gnavi.co.jp/ver1/RestSearchAPI/?callback=?', params, getLastTrainTime);
+  $.getJSON('http://api.gnavi.co.jp/ver1/RestSearchAPI/?callback=?', params, showRestaurants);
 }
 
-// TODO お店近辺の終電の時間を取得
-function getLastTrainTime(list) {
-  console.log(list);
+function showRestaurants(list) {
+  $.each(list.rest, function(k, rest){
+    var li = $('<li/>').addClass('rest').data({ id: rest.id })
+                .html("<a href='./show.html?id=" + rest.id + "'>" + rest.name + "</a>");
+    $('#restaurants').append(li);
+  });
+  $('#restaurants').listview('refresh');
 }
 
 function error(e) {
