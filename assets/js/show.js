@@ -16,8 +16,17 @@ $(document).on("pageinit", function(){
           {"x":139.710913,"next":"新宿三丁目","prev":"四谷三丁目","distance":"550m","y":35.688524,"line":"東京メトロ丸ノ内線","postal":"1600022","name":"新宿御苑前","prefecture":"東京都"}
         ]}
       };
-
       console.log(station_json);
+      addTrainInfo = function( station ) {
+        station.lastTrainTIme = '24:00';
+        station.startTrainTIme = '05:00';
+        return station
+      }
+      for(var idx in stationList) {
+        stationList[idx] = addTrainInfo(stationList[idx]);
+      }
+      console.log(stationList);
+
     })(lat, lng);
   }
   var getStoreInfo = function(storeId, func) {
