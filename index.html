@@ -9,207 +9,15 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
 <script src="./assets/js/rollcabbage.js"></script>
-<script src="./assets/js/countdown.js"></script>
 </head>
 <body>
 
 <script>
-
-var stations;
-var station1 = {
-    line:'大江戸線',
-    name:'赤羽橋',
-    latitude: '35.655007',
-    longitude: '139.743642',
-    lastTrain: '1:08'
-};
-var station2 = {
-    line:'日比谷線',
-    name:'神谷町',
-    latitude: '35.662978',
-    longitude: '139.745069',
-    lastTrain: '1:12'
-};
-var station3 = {
-    line:'三田線',
-    name:'御成門',
-    latitude: '35.661215',
-    longitude: '139.751535',
-    lastTrain: '0:08'
-};
-var station4 = {
-    line:'浅草線',
-    name:'大門',
-    latitude: '35.656785',
-    longitude: '139.75466',
-    lastTrain: '0:47'
-};
-var station5 = {
-    line:'JR',
-    name:'浜松町',
-    latitude: '35.655646',
-    longitude: '139.756749',
-    lastTrain: '1:12'
-};
-
-var nowIam = {
-    latitude:'35.6578124',
-    longitude:'139.7448359'
-}
-
-var stations = [station1,station2,station3,station4,station5];
-
-console.log(toStations(nowIam,stations));
-    
-function toStations(nowIam,stations){
-    var result = []
-    var now = new Date();
-    stations.forEach(function(station){
-    
-        /*var place = new google.maps.LatLng(Number(station.latitude), Number(station.longitude));
-        var distance = google.maps.geometry.spherical.computeDistanceBetween(nowIam, place);*/
-        var geoDistance = cal_distance(Number(nowIam.latitude),Number(nowIam.longitude), Number(station.latitude),Number(nowIam.longitude));
-        station.distance = geoDistance/80;
-        var limitCount = initCount(now,station.lastTrain);
-        if(limitCount){
-            station.count = limitCount;
-            result.push(station);
-        }
-    });
-    return result;
-}
-
-function initCount(now,lastTrain){
-    var n_hours = now.getHours();
-    var n_minutes = now.getMinutes();
-    
-    var train = lastTrain.split(":");
-    var t_hours = Number(train[0]);
-    var t_minutes = Number(train[1]);
-    
-    var lt;
-    
-  	console.log(n_hours);
-    console.log(t_hours);
-  
-    if(n_hours > 12 && t_hours > 12){
-        //終電のdateオブジェクトを今日の日付でつくる
-        lt = new Date();
-        lt.setHours = t_hours;
-        lt.setMinutes = t_minutes;
-    }else if(n_hours > 12 && t_hours < 12){
-        //終電のdateオブジェクトを明日の日付でつくる
-        lt = new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
-        lt.setHours = t_hours;
-        lt.setMinutes = t_minutes;
-    }else{
-        //終電のdateオブジェクトを今日の日付でつくる
-        lt = new Date();
-        lt.setHours = t_hours;
-        lt.setMinutes = t_minutes;
-    }
-    
-  	console.log(now);
-  	console.log(lt);
-  
-    if(lt-now > 0){
-        return lt-now;
-    }else{
-        return false;
-    }
-}
-
-    
-function countDown(stations){
-    stations.map(function(station,index){
-        station.count -= 1;
-        return station;
-    });
-}
-
-function cal_distance(lat1, lon1, lat2, lon2){
-    //ラジアンに変換
-    var a_lat = lat1 * Math.PI / 180;
-    var a_lon = lon1 * Math.PI / 180;
-    var b_lat = lat2 * Math.PI / 180;
-    var b_lon = lon2 * Math.PI / 180;
-
-    // 緯度の平均、緯度間の差、経度間の差
-    var latave = (a_lat + b_lat) / 2;
-    var latidiff = a_lat - b_lat;
-    var longdiff = a_lon - b_lon;
-
-    //子午線曲率半径
-    //半径を6335439m、離心率を0.006694で設定してます
-    var meridian = 6335439 / Math.sqrt(Math.pow(1 - 0.006694 * Math.sin(latave) * Math.sin(latave), 3));    
-
-    //卯酉線曲率半径
-    //半径を6378137m、離心率を0.006694で設定してます
-    var primevertical = 6378137 / Math.sqrt(1 - 0.006694 * Math.sin(latave) * Math.sin(latave));     
-
-    //Hubenyの簡易式
-    var x = meridian * latidiff;
-    var y = primevertical * Math.cos(latave) * longdiff;
-
-    return Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
-}
-    
+  (function($){
+    getCurrentPosition();
+  })(jQuery);
 </script>
 
-<script>
-$(function(){
-    var stations;
-    var station1 = {
-        line:'大江戸線',
-        name:'赤羽橋',
-        latitude: '35.655007',
-        longitude: '139.743642',
-        lastTrain: '01:08'
-    };
-    var station2 = {
-        line:'日比谷線',
-        name:'神谷町',
-        latitude: '35.662978',
-        longitude: '139.745069',
-        lastTrain: '01:12'
-    };
-    var station3 = {
-        line:'三田線',
-        name:'御成門',
-        latitude: '35.661215',
-        longitude: '139.751535',
-        lastTrain: '00:08'
-    };
-    var station4 = {
-        line:'浅草線',
-        name:'大門',
-        latitude: '35.656785',
-        longitude: '139.75466',
-        lastTrain: '00:47'
-    };
-    var station5 = {
-        line:'JR',
-        name:'浜松町',
-        latitude: '35.655646',
-        longitude: '139.756749',
-        lastTrain: '01:12'
-    };
-
-    var nowIam = {
-        latitude:'35.6578124',
-        lognitude:'139.7448359'
-    };
-    stations = [station1,station2,station3,station4,station5];
-    stations.forEach(function(station){
-        var latDist = Math.abs(nowIam.latitude - station.latitude);
-        var logDist = Math.abs(nowIam.lognitude - station.lognitude);
-        var result = Math.sqrt(logDist*logDist + latDist*latDist);
-        console.log(result);
-    });
-
-});
-
-</script>
 <!--ページ領域-->
 <div data-role="page" data-title="ロールキャベツ">
 
@@ -219,29 +27,13 @@ $(function(){
   </div>
 
   <div role="main" class="ui-content">
-    <ul data-role="listview">
-      <li id="listHeader"><div class="station">周辺の駅</div><div class="timelimit2">終電まで</div><div class="distance">距離</div></li>
-      <li><div class="station">大江戸線 赤羽橋駅</div><div id="CDT" class="timelimit"></div><div class="distance">徒歩5分</div></li>
-      <li><div class="station">日比谷線 神谷町駅</div><div class="timelimit"></div><div class="distance">徒歩7分</div></li>
-      <li><div class="station">三田線	御成門駅</div><div class="timelimit"></div><div class="distance">徒歩6分</div></li>
-      <li><div class="station">浅草線	大門駅</div><div class="timelimit"></div><div class="distance">徒歩10分</div></li>
-      <li><div class="station">JR 浜松町駅</div><div class="timelimit"></div><div class="distance">徒歩15分</div></li>
-    </ul>
+    <ul data-role="listview" id="restaurants"></ul>
   </div>
 
   <div data-role="footer">
     <h3>ぐるなびいい肉ハッカソン チームD</h3>
   </div>
 
-  <div id="choice">
-    <div class="inner">
-      <ul>
-        <li>お店を探す</li>
-        <li>タクシーを呼ぶ</li>
-        <li>宿泊施設を探す</li>
-      </ul>
-    </div>
-  </div>
 </div>
 
 </body>

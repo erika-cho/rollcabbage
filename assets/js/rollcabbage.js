@@ -1,7 +1,3 @@
-(function($){
-  getCurrentPosition();
-})(jQuery);
-
 // 現在位置情報を取得
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(getRestaurantList, error);
