@@ -55,3 +55,292 @@ li#listHeader{
 #choice li:last-child {
   margin-bottom: 0;
 }
+
+/* ======================================================
+  after.
+=======================================================*/
+
+html, body, div, span, figure, img, fieldset,
+a, h1, h2, h3, h4, h5, h6, p, blockquote,
+pre, small, strong, dl, dt, dd, ol, ul, li,
+table, caption, tbody, tfoot, thead, tr, th, td{
+	background:transport;
+	margin:0;
+	padding:0;
+	border:none;
+	outline:none;
+	font-size:1em;
+}
+
+header,hgroup,nav,article,
+section,aside,figure,footer{
+	display:block;
+}
+
+ol, ul{
+	list-style: none;
+}
+
+html{
+    font:14px/1.3 "メイリオ", Meiryo, Osaka, "ヒラギノ角ゴ Pro W3", "ＭＳ ゴシック", Arial, Helvetica, Tahoma, sans-serif;
+}
+
+
+
+/*------------------------------------------------------------
+	レイアウト
+------------------------------------------------------------*/
+body{
+	background:#FFF;
+	width:100%;
+	color:#363133;
+}
+
+/*	リンクタグ	*/
+
+a,
+a:hover{
+	color:#363133;
+	text-decoration:none;
+}
+
+
+
+/*------------------------------------------------------------
+	ヘッダー
+------------------------------------------------------------*/
+header{
+	width:100%;
+	overflow:hidden;}
+
+h1	{
+	background:#000000;
+	color:#cccccc;
+	font-weight:normal;
+	background:url(../images/header_bg.gif) repeat-x;
+	font-size:0.75em;
+	display:block;
+	line-height:22px;
+	height:22px;
+	overflow:hidden;
+}
+
+/*	タイトル	*/
+hgroup h2{
+	background:url(../images/header_bg.gif) repeat-x;
+	ackground-image:-moz-linear-gradient(top, #434641, #292b27);
+	background-image:-webkit-gradient(linear, center top, center bottom, from(#434641), to(#292b27));
+	background-image:-o-linear-gradient(top, #434641, #292b27);
+	background-image:linear-gradient(top, #434641, #292b27);
+	width:100%;
+	padding:3% 10px;
+	border-bottom:solid 1px #11120F;
+	color:#000;
+	text-shadow:1px 1px 1px #11120F;
+}
+
+/*---------------------
+	ヘッダー画像
+--------------------*/
+p#h_image{
+	padding:0;
+	position:relative;
+}
+
+p#h_image img{
+	width:99.9%;
+	margin:auto;
+	border:solid 1px #E5CFD7;}
+
+/*	ヘッダー画像内 文字	*/
+p#h_image span{
+	padding:0 20px;
+	display:block;
+	color:#000;
+	font-weight:bold;
+	position:absolute;
+	z-index:2;
+	top:40%;
+}
+
+/*	ヘッダー画像下 文字	*/
+header h2{
+	padding:10px;
+}
+
+header p{
+	padding:0 10px;
+}
+
+
+
+/*------------------------------------------------------------
+	コンテンツ
+------------------------------------------------------------*/
+article{
+	width:100%;
+	overflow:hidden;
+}
+
+/*---------------------
+	コンテンツタイトル
+--------------------*/
+article .title h2{
+	background-image: -moz-linear-gradient(top, #cf494a, #7c1c1c);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#cf494a), to(#7c1c1c));
+	background-image: -o-linear-gradient(top, #cf494a, #7c1c1c);
+	background-image: linear-gradient(top, #cf494a, #7c1c1c);
+
+
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+
+
+	padding:1% 10px;
+	margin:3% 5px 0px;
+	border:solid 1px #A6959C;
+	border-top:solid 1px #ccc;
+	color:#ccc;
+}
+
+/*---------------------
+	コンテンツボディ
+--------------------*/
+article section{
+	padding:4% 5px 4% 10px;
+	margin-left:5px;
+	margin-right:5px;
+}
+
+article section:nth-child(even){
+	background-image: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#f8f8f8), to(#f2f2f2));
+	background-image: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background-image: linear-gradient(top, #f8f8f8, #f2f2f2);
+	border:solid 1px;
+	border-color:#FFF #999 #aaa;
+}
+
+article section:nth-child(odd){
+	background-image: -moz-linear-gradient(top, #ececec, #d9d9d9);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#ececec), to(#d9d9d9));
+	background-image: -o-linear-gradient(top, #ececec, #d9d9d9);
+	background-image: linear-gradient(top, #ececec, #d9d9d9);
+	border:solid 1px;
+	border-color:#FFF #999 #aaa;
+}
+
+article section a{
+	background:url(../images/link_icon.png) no-repeat right center;
+	padding-right:5%;
+	display:block;
+	overflow:hidden;
+}
+
+
+/*	コンテンツ画像　*/
+article section a figure{
+	width:35%;
+	margin-right:10px;
+
+	border:solid 1px #A6959C;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+
+	float:left;}
+
+article section a figure img{
+	width:100%;
+}
+
+
+/*	コンテンツ画像の説明文字　*/
+article section a h2{
+	width:60%;
+	color:#76252C;
+	float:left;
+}
+
+article section a p{
+	width:90%;
+	float:right;
+}
+
+/*	トップに戻る　*/
+p.go_top{
+	margin-top:5%;
+	text-align:right;}
+
+p.go_top a{
+	margin-right:5px;
+	padding-right:15px;
+	display:block;
+	color:#A6959C;
+}
+
+/*------------------------------------------------------------
+	フッター
+------------------------------------------------------------*/
+.free_space{
+	margin-top:5%;
+	padding:3% 10px;
+	border:dotted #E5CFD7;
+	border-width:1px 0;
+}
+
+.free_space img{
+	margin:auto;
+	display:block;
+	border:solid 1px #363133;
+}
+
+footer ul{
+	padding:4% 0;
+	overflow:hidden;
+}
+
+footer ul li{
+	width:20%;
+	margin:2% 2.5% 2% 2.5%;
+	float:left;
+}
+
+footer ul li a{
+	padding:1.4em 0;
+	display:block;
+	color:#E5CFD7;
+	border:solid 1px #AB9DA3;
+
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	text-align:center;
+	-moz-box-shadow:0px 0px 0px 1px #363133;
+	-webkit-box-shadow:0px 0px 0px 1px #363133;
+	box-shadow:0px 0px 0px 1px #363133;
+	background-image: -moz-linear-gradient(top, #b9abb0, #8b7f78);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#b9abb0), to(#8b7f78));
+	background-image: -o-linear-gradient(top, #b9abb0, #8b7f78);
+	background-image: linear-gradient(top, #b9abb0, #8b7f78);
+	-moz-background-clip: padding-box;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+address{
+	padding:3% 0;
+	border-top:dotted 1px #363133;
+}
+
+address p{
+	font-size:0.714em;
+	text-align:center;}
+
+
+
+
+
+
