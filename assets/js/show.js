@@ -3,7 +3,7 @@ var getStationList = function(json) {
   var lng = json.rest.longitude;
   // 駅取得apiたたくイメージ
   (function(lat, lng) {
-    var station_json = {"response":
+    var stationJson = {"response":
       {"station":[
         {"x":139.702208,"next":"千駄ケ谷","prev":"新宿","distance":"400m","y":35.683794,"line":"JR総武線","postal":"1510051","name":"代々木","prefecture":"東京都"},
         {"x":139.702208,"next":"新宿","prev":"千駄ケ谷","distance":"400m","y":35.683794,"line":"JR中央線","postal":"1510051","name":"代々木","prefecture":"東京都"},
@@ -14,7 +14,19 @@ var getStationList = function(json) {
       ]}
     };
 
-    console.log(station_json);
+    var stationList = stationJson.response.station;
+    console.log(stationList);
+
+    addTrainInfo = function( station ) {
+      station.lastTrainTIme = '24:00';
+      station.startTrainTIme = '05:00';
+      return station
+    }
+    for(var idx in stationList) {
+      stationList[idx] = addTrainInfo(stationList[idx]);
+    }
+    console.log(stationList);
+    console.log("temp fin");
   })(lat, lng);
 }
 var getStoreInfo = function(storeId, func) {
