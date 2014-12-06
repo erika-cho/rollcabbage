@@ -8,10 +8,17 @@
 <link rel="stylesheet" href="./assets/css/rollcabbage.css" />
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
-<script src="./assets/js/rollcabbage.js"></script>
+<script src="./assets/js/show.js"></script>
 <script src="./assets/js/countdown.js"></script>
 </head>
 <body>
+
+<script>
+  $(document).on("pageinit", function(){
+    var params = getUrlVars()
+    viewStationList(params.id);
+  });
+</script>
 
 <script>
 
