@@ -20,6 +20,7 @@ function getRestaurantList(pos) {
 
 function showRestaurants(list) {
   $.each(list.rest, function(k, rest){
+      
     var li = $('<li/>').addClass('rest').data({ id: rest.id })
                 .html("<a href='./show.html?id=" + rest.id + "'>" + rest.name + "</a>");
     $('#restaurants').append(li);

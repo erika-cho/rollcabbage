@@ -9,29 +9,37 @@
 <script src="./assets/js/countdown.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
-<<<<<<< HEAD
+
 <script src="./assets/js/rollcabbage.js"></script>
 
-=======
 <script src="./assets/js/show.js"></script>
 <script src="./assets/js/countdown.js"></script>
->>>>>>> 63a65d62765f1dd47c6a3ab2effb4754334bd45f
+
 </head>
 <body>
 
 <script>
-<<<<<<< HEAD
+
 $(function(){
-=======
+  $("#stations").on("click", function(elm){
+        $(".timelimit").text("0:00");
+        $(".timelimit").on("click",function(){
+            $("#choice").show();
+        });
+  });  
+  
+  
   $(document).on("pageinit", function(){
     var params = getUrlVars()
     viewStationList(params.id);
+    console.log($("body"));
+    
   });
+});
 </script>
 
 <script>
 
->>>>>>> 63a65d62765f1dd47c6a3ab2effb4754334bd45f
 var stations;
 var station1 = {
     line:'大江戸線',
@@ -210,7 +218,7 @@ function cal_distance(lat1, lon1, lat2, lon2){
       <ul>
         <li><a href="after.html#sec1">お店を探す</a></li>
         <li><a href="after.html#sec2">タクシーを呼ぶ</a></li>
-        <li><a href="after.html#sec3">宿泊施設を探す</a></li>
+        <li><a href="after.html">宿泊施設を探す</a></li>
       </ul>
     </div>
   </div>
