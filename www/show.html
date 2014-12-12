@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<script src="components/loader.js"></script>
+<link rel="stylesheet" href="components/loader.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/countdown.js"></script>
+<script>
+$(function() {
+  var params = getUrlVars()
+  viewStationList(params.id);
+});
+</script>
+<script>
+$(function() {
+var stations;
+var station1 = {
+    line:'大江戸線',
+    name:'赤羽橋',
+    latitude: '35.655007',
+    longitude: '139.743642',
+    lastTrain: '3:38'
+};
+var station2 = {
+    line:'日比谷線',
+    name:'神谷町',
+    latitude: '35.662978',
+    longitude: '139.745069',
+    lastTrain: '1:12'
+};
+var station3 = {
+    line:'三田線',
+    name:'御成門',
+    latitude: '35.661215',
+    longitude: '139.751535',
+    lastTrain: '0:08'
+};
+var station4 = {
+    line:'浅草線',
+    name:'大門',
+    latitude: '35.656785',
+    longitude: '139.75466',
+    lastTrain: '0:47'
+};
+var station5 = {
+    line:'JR',
+    name:'浜松町',
+    latitude: '35.655646',
+    longitude: '139.756749',
+    lastTrain: '1:12'
+};
+
+var nowIam = {
+    latitude:'35.6578124',
+    longitude:'139.7448359'
+}
+
+var nearStations = [station1,station2,station3,station4,station5];
+var stations = toStations(nowIam,nearStations);
+
+    stations.forEach(function(station,index){
+    var listView = '<li id="'+ "station" + index + '"><div class="station">' + station.line + " " + station.name + '</div><div id="'+ "time" + index + '" class="timelimit"></div></li>';
+    $("#stations").append(listView);
+    console.log(station.limit);
+      CDT("time" + index, station.limit);
+    });
+
+});
+
+
+function toStations(nowIam,stations){
+    var result = []
+    var now = new Date();
+    stations.forEach(function(station){
+        var geoDistance = cal_distance(Number(nowIam.latitude),Number(nowIam.longitude), Number(station.latitude),Number(nowIam.longitude));
+        station.distance = geoDistance/80;
+        var limitCount = initCount(now,station.lastTrain);
+        if(limitCount){
+            station.limit = limitCount;
+            result.push(station);
+        }
+    });
+    return result;
+}
+
+function ltTime(lastTrain){
+    var train = lastTrain.split(":");
+    var t_hours = Number(train[0]);
+    var t_minutes = Number(train[1]);
+    if(t_hours > 12){
+        lt = new Date();
+        lt.setHours = t_hours;
+        lt.setMinutes = t_minutes;
+    }else{
+        lt = new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
+        lt.setHours = t_hours;
+        lt.setMinutes = t_minutes;
+    }
+}
+
+function initCount(now,lastTrain){
+    var n_hours = now.getHours();
+    var n_minutes = now.getMinutes();
+
+    var train = lastTrain.split(":");
+    var t_hours = Number(train[0]);
+    var t_minutes = Number(train[1]);
+    var lt;
+
+    if(t_hours > n_hours){
+        //終電のdateオブジェクトを今日の日付でつくる
+        lt = new Date();
+        lt.setHours(t_hours);
+        lt.setMinutes(t_minutes);
+    }else if(t_hours < n_hours && n_hours > 5){
+        //終電のdateオブジェクトを明日の日付でつくる
+        lt = new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
+        lt.setHours(t_hours);
+        lt.setMinutes(t_minutes);
+    } else {
+      lt = new Date();
+      lt.setHours(t_hours);
+      lt.setMinutes(t_minutes);
+    }
+
+    if(lt-now > 0){
+      console.log(lt-now);
+        return lt;
+    }else{
+        return false;
+    }
+}
+
+function cal_distance(lat1, lon1, lat2, lon2){
+    //ラジアンに変換
+    var a_lat = lat1 * Math.PI / 180;
+    var a_lon = lon1 * Math.PI / 180;
+    var b_lat = lat2 * Math.PI / 180;
+    var b_lon = lon2 * Math.PI / 180;
+
+    // 緯度の平均、緯度間の差、経度間の差
+    var latave = (a_lat + b_lat) / 2;
+    var latidiff = a_lat - b_lat;
+    var longdiff = a_lon - b_lon;
+
+    //子午線曲率半径
+    //半径を6335439m、離心率を0.006694で設定してます
+    var meridian = 6335439 / Math.sqrt(Math.pow(1 - 0.006694 * Math.sin(latave) * Math.sin(latave), 3));
+
+    //卯酉線曲率半径
+    //半径を6378137m、離心率を0.006694で設定してます
+    var primevertical = 6378137 / Math.sqrt(1 - 0.006694 * Math.sin(latave) * Math.sin(latave));
+
+    //Hubenyの簡易式
+    var x = meridian * latidiff;
+    var y = primevertical * Math.cos(latave) * longdiff;
+
+    return Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+}
+</script>
+</head>
+<body>
+<header>
+  <h1>ロールキャベツ</h1>
+</header>
+<main>
+  <ul id="stations">
+  </ul>
+</main>
+<footer>
+  <small>ぐるなびいい肉ハッカソン Dチーム</small>
+</footer>
+</body>
+</html>

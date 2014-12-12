@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+/* ======================================================
+  .
+=======================================================*/
+header,
+footer {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  left: 0;
+}
+
+header {
+  color: #fafafa;
+  padding: 1.8em;
+  font-size: 60%;
+  background: #85c041;
+  top: 0;
+}
+
+footer {
+  padding: 0.3em;
+  color: #b4b4b4;
+  background: #fafafa;
+  bottom: 0;
+}
+
+main {
+  padding-top: 37px;
+  padding-bottom: 13px;
+}
+
+/* ======================================================
+  .
+=======================================================*/
+#restaurants li {
+  background: #f8f8f8;
+  border-bottom: 1px solid #ececec;
+}
+
+#restaurants li:nth-child(odd) {
+	background: #fff;
+}
+
+#restaurants a {
+  display: block;
+  padding: 1em 1.8em;
+  color: #333;
+  text-decoration: none;
+}

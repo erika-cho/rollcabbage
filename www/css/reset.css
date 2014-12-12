@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+/* ======================================================
+  Reset.
+=======================================================*/
+body {
+  margin: 0;
+  font: 100%/1 "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+article, aside, details, figcaption, figure, canvas,
+footer, header, hgroup, menu, nav, main, section, summary {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 0;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+a {
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input[type="button"], input[type="submit"], input[type="text"] {
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+* {
+  -webkit-touch-callout: none;
+  box-sizing: border-box;
+}
+
+*:not(input) {
+  -webkit-user-select: none;
+}
+
+div.contents-ga-overflow-suruyo {
+  -webkit-overflow-scrolling: touch;
+}
+
+div.contents-ga-overflow-suruyo > * {
+  -webkit-transform: translateZ(0px);
+}
